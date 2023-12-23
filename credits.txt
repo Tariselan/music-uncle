@@ -1,0 +1,3 @@
+the basis of this file is based off of the code at https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/createOscillator
+
+all the rest is of my own making but the actual hard ppart (making a note) is thanks to them lol
