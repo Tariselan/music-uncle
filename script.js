@@ -74,10 +74,6 @@ function parse(input) {
     pitch(frequency, 1000);
 }
 
-document.getElementById("button").addEventListener("click", function(){
-    let input = prompt("Choose pitch");
-    parse(input);
-})
 
 document.body.addEventListener("keypress", function(event) {
     if (validKeyBinds.includes(event.key)) {
