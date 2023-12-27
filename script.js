@@ -8,10 +8,12 @@ const audioCtx = new AudioContext();
 /*
 my code >:)
 */
+const waveType = ["sine", "square", "triangle", "sawtooth"];
+var wave;
 
 function pitch(hertz, time) {
     let sound = audioCtx.createOscillator();
-    sound.type = "sine";
+    sound.type = waveType[wave];
     sound.frequency.setValueAtTime(hertz, audioCtx.currentTime);
     sound.connect(audioCtx.destination);
     sound.start();
@@ -23,9 +25,10 @@ function pitch(hertz, time) {
 const pitchConstant = Math.pow(2, (1/12)); // interval between semitones
 const lowA = 55 // hz of low A
 
-var octave = 1; 
-const validOctaves = ["1","2","3","4","5","6"]
-const validKeyBinds = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]"]
+var octave = 3; 
+const validOctaves = ["1","2","3","4","5","6", "7", "8", "9"];
+const validKeyBindsNotes = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]"];
+const validKeyBindsWaves = ["a", "s", "d", "f"];
 
 const noteMap = new Map([
     ["a", lowA],
@@ -42,7 +45,7 @@ const noteMap = new Map([
     ["G", lowA*(pitchConstant**11)]
 ])
 
-const keyBind = new Map([
+const keyBindNotes = new Map([
     ["q", "a"],
     ["w", "A"],
     ["e", "b"],
@@ -54,35 +57,32 @@ const keyBind = new Map([
     ["o", "f"],
     ["p", "F"],
     ["[", "g"],
-    ["]", "G"],
-    
+    ["]", "G"]    
 ])
 
-
-function splitString(input) {
-    let split = [...input.toString()];
-    return split;
-}
+const keyBindWaves = new Map([
+    ["a", 0],
+    ["s", 1],
+    ["d", 2],
+    ["f", 3]
+])
 
 function octaveMult(octave) {
     return 2**(octave-1); 
 }
 
-function parse(input) {
-    let parsed = splitString(input);
-    let frequency = noteMap.get(parsed[0]) * octaveMult(parsed[1]);
-    pitch(frequency, 1000);
-}
 
 
 document.body.addEventListener("keypress", function(event) {
-    if (validKeyBinds.includes(event.key)) {
-        let frequency =  (noteMap.get(keyBind.get(event.key)) * octaveMult(octave));
-        pitch(frequency, 100)
+    if (validKeyBindsNotes.includes(event.key)) {
+        let frequency =  (noteMap.get(keyBindNotes.get(event.key)) * octaveMult(octave));
+        pitch(frequency, 50);
     };
     if (validOctaves.includes(event.key)){
         let int = parseInt(event.key);
         octave = int;
-        console.log(octave)
     };
+    if (validKeyBindsWaves.includes(event.key)) {
+        wave = keyBindWaves.get(event.key);
+    }
 })
