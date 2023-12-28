@@ -144,6 +144,28 @@ document.body.addEventListener("keypress", function(event) {
             document.getElementById(octave.toString()).classList.remove("selected");
             octave = parseInt(element.id);
             element.classList.add("selected");
+            document.querySelectorAll(".octave").forEach(function(span) {
+                span.innerText = octave;
+            });
+            document.querySelectorAll(".octave-plus").forEach(function(span) {
+                span.innerText = octave +1;
+            });
+            // changing frequency values in html
+            document.getElementById("a-freq").innerHTML = Math.round(noteMap.get("a") * octaveMult(octave));
+            document.getElementById("A-freq").innerHTML = Math.round(noteMap.get("A") * octaveMult(octave));
+            document.getElementById("b-freq").innerHTML = Math.round(noteMap.get("b") * octaveMult(octave));
+            document.getElementById("c-freq").innerHTML = Math.round(noteMap.get("c") * octaveMult(octave));
+            document.getElementById("C-freq").innerHTML = Math.round(noteMap.get("C") * octaveMult(octave));
+            document.getElementById("d-freq").innerHTML = Math.round(noteMap.get("d") * octaveMult(octave));
+            document.getElementById("D-freq").innerHTML = Math.round(noteMap.get("D") * octaveMult(octave));
+            document.getElementById("e-freq").innerHTML = Math.round(noteMap.get("e") * octaveMult(octave));
+            document.getElementById("f-freq").innerHTML = Math.round(noteMap.get("f") * octaveMult(octave));
+            document.getElementById("F-freq").innerHTML = Math.round(noteMap.get("F") * octaveMult(octave));
+            document.getElementById("g-freq").innerHTML = Math.round(noteMap.get("g") * octaveMult(octave));
+            document.getElementById("G-freq").innerHTML = Math.round(noteMap.get("G") * octaveMult(octave));
         });
     } 
 })
+
+
+alert("Use the keys on the top row of your qwerty keyboard ('q' through to ']') to play the notes and to change the octave press the number of the respective octave")
