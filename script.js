@@ -9,15 +9,17 @@ const audioCtx = new AudioContext();
 my code >:)
 */
 const waveType = ["sine", "square", "triangle", "sawtooth"];
-var wave;
+var wave = waveType[0];
 
 function pitch(hertz, time) {
     let sound = audioCtx.createOscillator();
-    sound.type = waveType[wave];
+    sound.type = wave;
     sound.frequency.setValueAtTime(hertz, audioCtx.currentTime);
     sound.connect(audioCtx.destination);
     sound.start();
-    setTimeout(function() {sound.stop()}, time)
+    setTimeout(function() {
+        sound.stop()
+    }, time);
 }
 
 // note, altered form a = a natural and A = a sharp, 
@@ -25,7 +27,7 @@ function pitch(hertz, time) {
 const pitchConstant = Math.pow(2, (1/12)); // interval between semitones
 const lowA = 55 // hz of low A
 
-var octave = 3; 
+var octave = 4; 
 const validOctaves = ["1","2","3","4","5","6", "7", "8", "9"];
 const validKeyBindsNotes = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]"];
 const validKeyBindsWaves = ["a", "s", "d", "f"];
@@ -76,13 +78,18 @@ function octaveMult(octave) {
 document.body.addEventListener("keypress", function(event) {
     if (validKeyBindsNotes.includes(event.key)) {
         let frequency =  (noteMap.get(keyBindNotes.get(event.key)) * octaveMult(octave));
-        pitch(frequency, 50);
+        let time = 150;
+        pitch(frequency, time);
+        document.getElementById(keyBindNotes.get(event.key)).classList.add("selected");
+        setTimeout(() => {
+            document.getElementById(keyBindNotes.get(event.key)).classList.remove("selected");
+        }, time);
     };
     if (validOctaves.includes(event.key)){
         let int = parseInt(event.key);
         octave = int;
     };
     if (validKeyBindsWaves.includes(event.key)) {
-        wave = keyBindWaves.get(event.key);
+        wave = waveType[keyBindWaves.get(event.key)];
     }
 })
