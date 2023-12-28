@@ -76,7 +76,7 @@ function octaveMult(octave) {
 document.body.addEventListener("keypress", function(event) {
     if (validKeyBindsNotes.includes(event.key)) {
         let frequency =  (noteMap.get(keyBindNotes.get(event.key)) * octaveMult(octave));
-        pitch(frequency, 50);
+        pitch(frequency, 100);
     };
     if (validOctaves.includes(event.key)){
         let int = parseInt(event.key);
