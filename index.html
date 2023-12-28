@@ -1,13 +1,91 @@
 <html>
   <head>
     <title>Music Test</title>
-    <script type="module" src="script.js"></script>
+    <script defer type="module" src="script.js"></script>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <p>Press from 1-9 to change the octave
-      <br><br>The semitones are mapped from a to g# on the keys "q" to "]"
-      <br><br>Different waves are as follows: sine is mapped to "A", square "S", triangle "d", sawtooth "f"
-    </p>
+    <div class="grid-container">
+       <!-- First Row with 12 boxes -->
+       <div class="grid-item row-1" id="a">
+        A<span class="octave">4</span> <br> <span id="a-freq">440</span>hz
+      </div>
+      <div class="grid-item row-1" id="A">
+        B&flat;<span class="octave">4</span><br> <span id="A-freq">466</span>hz
+      </div>
+      <div class="grid-item row-1" id="b">
+        B<span class="octave">4</span><br> <span id="b-freq">494</span>hz
+      </div>
+      <div class="grid-item row-1" id="c">
+        C<span class="octave-plus">5</span><br> <span id="c-freq">523</span>hz
+      </div>
+      <div class="grid-item row-1" id="C">
+        D&flat;<span class="octave-plus">5</span><br> <span id="C-freq">554</span>hz
+      </div>
+      <div class="grid-item row-1" id="d">
+        D<span class="octave-plus">5</span><br> <span id="d-freq">587</span>hz
+      </div>
+      <div class="grid-item row-1" id="D">
+        E&flat;<span class="octave-plus">5</span><br> <span id="D-freq">622</span>hz
+      </div>
+      <div class="grid-item row-1" id="e">
+        E<span class="octave-plus">5</span><br> <span id="e-freq">659</span>hz
+      </div>
+      <div class="grid-item row-1" id="f">
+        F<span class="octave-plus">5</span><br> <span id="f-freq">698</span>hz
+      </div>
+      <div class="grid-item row-1" id="F">
+        G&flat;<span class="octave-plus">5</span><br> <span id="F-freq">740</span>hz
+      </div>
+      <div class="grid-item row-1" id="g">
+        G<span class="octave-plus">5</span><br> <span id="g-freq">784</span>hz
+      </div>
+      <div class="grid-item row-1" id="G">
+        A&flat;<span class="octave-plus">5</span><br> <span id="G-freq">831</span>hz
+      </div>
+  
+      <!-- Second Row with 9 boxes -->
+      <div class="grid-item row-2" id="1">
+        1st Octave
+      </div>
+      <div class="grid-item row-2" id="2">
+        2nd Octave
+      </div>
+      <div class="grid-item row-2" id="3">
+        3rd Octave
+      </div>
+      <div class="grid-item row-2 selected" id="4">
+        4th Octave
+      </div>
+      <div class="grid-item row-2" id="5">
+        5th Octave
+      </div>
+      <div class="grid-item row-2" id="6">
+        6th Octave
+      </div>
+      <div class="grid-item row-2" id="7">
+        7th Octave
+      </div>
+      <div class="grid-item row-2" id="8">
+        8th Octave
+      </div>
+      <div class="grid-item row-2" id="9">
+        9th Octave
+      </div>
+  
+      <!-- Third Row with 4 boxes -->
+      <div class="grid-item row-3 selected" id="sine">
+        Sine Wave (A)
+      </div>
+      <div class="grid-item row-3" id="square"> 
+        Square Wave (S)
+      </div>
+      <div class="grid-item row-3" id="triangle">
+        Triangle Wave (D)
+      </div>
+      <div class="grid-item row-3" id="sawtooth">
+        Sawtooth Wave (F)
+      </div>
+    </div>
   </body>
 </html>
