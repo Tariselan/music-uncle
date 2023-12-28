@@ -3,7 +3,16 @@ code that i stole from the web
 */
 
 // create web audio api context
-const audioCtx = new AudioContext();
+let audioCtx;
+
+// Check for browser support
+if (typeof window !== 'undefined' && (window.AudioContext || window.webkitAudioContext)) {
+    // Use standard AudioContext if available
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+} else {
+    // Use webkitAudioContext for older browsers
+    audioCtx = new webkitAudioContext();
+}
 
 /*
 my code >:)
@@ -30,7 +39,9 @@ const lowA = 55 // hz of low A
 var octave = 4; 
 const validOctaves = ["1","2","3","4","5","6", "7", "8", "9"];
 const validKeyBindsNotes = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]"];
+const validNotes = ["a", "A", "b", "c", "C", "d", "D", "e", "f", "F", "g", "G"];
 const validKeyBindsWaves = ["a", "s", "d", "f"];
+const validWaves = ["sine", "square", "triangle", "sawtooth"];
 
 const noteMap = new Map([
     ["a", lowA],
@@ -85,8 +96,6 @@ function octaveMult(octave) {
     return 2**(octave-1); 
 }
 
-
-
 document.body.addEventListener("keypress", function(event) {
     if (validKeyBindsNotes.includes(event.key)) {
         let frequency =  (noteMap.get(keyBindNotes.get(event.key)) * octaveMult(octave));
@@ -108,4 +117,33 @@ document.body.addEventListener("keypress", function(event) {
         wave = waveType[keyBindWaves.get(event.key)];
         document.getElementById(wave).classList.add("selected");
     }
+});
+
+(Array.from(document.getElementsByClassName("grid-item"))).forEach((element) => {
+    if (validNotes.includes(element.id)) {
+        element.addEventListener("click", function() {
+            let frequency =  (noteMap.get(element.id)) * octaveMult(octave);
+            let time = 150;
+            pitch(frequency, time);
+            document.getElementById(element.id).classList.add("selected");
+            setTimeout(() => {
+                document.getElementById(element.id).classList.remove("selected");
+            }, time);
+        })
+    }
+    if (validWaves.includes(element.id)) {
+        element.addEventListener("click", function() {
+            document.getElementById(wave).classList.remove("selected");
+            wave = element.id;
+            element.classList.add("selected");
+        });
+
+    } 
+    if (validOctaves.includes(element.id)) {
+        element.addEventListener("click", function() {
+            document.getElementById(octave.toString()).classList.remove("selected");
+            octave = parseInt(element.id);
+            element.classList.add("selected");
+        });
+    } 
 })

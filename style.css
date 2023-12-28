@@ -1,40 +1,47 @@
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Use 100% of the viewport height */
-  margin: 0; /* Remove default margin */
-  background-color: #f5f5f5;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Use 100% of the viewport height */
+    margin: 0; /* Remove default margin */
+    background-color: #f5f5f5;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+    user-select: none;
 
 }
 
 .grid-container {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr); /* First row with 12 columns */
-  grid-gap: 10px; /* Adjust the gap between grid items */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); /* First row with 12 columns */
+    grid-gap: 10px; /* Adjust the gap between grid items */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
 }
 
 .grid-item {
-  padding: 20px;
-  text-align: center;
-  background-color: #aed9e0; /* Pastel background color for the div */
-  border: 5px solid #8ab6d6; /* Pastel border color for the div */
-  border-radius: 15px;
-  color: #4d4d4d; /* Font color for the div */
+    cursor: pointer;
+    padding: 20px;
+    text-align: center;
+    background-color: #aed9e0; /* Pastel background color for the div */
+    border: 5px solid #8ab6d6; /* Pastel border color for the div */
+    border-radius: 15px;
+    color: #4d4d4d; /* Font color for the div */
 }
 
 .selected {
-  background-color: #b4eefb;
+    background-color: #b4eefb;  
+}
+
+.grid-item.row-1 {
+    height: 34px ;
+    width: 51px;
 }
 
 /* Customize the number of columns for the second and third rows */
 .grid-item.row-2 {
-  grid-column: span 4; /* Adjust based on the number of columns in the second row */
+    grid-column: span 4; /* Adjust based on the number of columns in the second row */
 }
 
 .grid-item.row-3 {
-  grid-column: span 3; /* Adjust based on the number of columns in the third row */
+    grid-column: span 3; /* Adjust based on the number of columns in the third row */
 }
