@@ -69,6 +69,18 @@ const keyBindWaves = new Map([
     ["f", 3]
 ])
 
+const keyBindOctaves = new Map([
+    ["1", "1"],
+    ["2", "2"],
+    ["3", "3"],
+    ["4", "4"],
+    ["5", "5"],
+    ["6", "6"],
+    ["7", "7"],
+    ["8", "8"],
+    ["9", "9"],
+])
+
 function octaveMult(octave) {
     return 2**(octave-1); 
 }
@@ -86,10 +98,14 @@ document.body.addEventListener("keypress", function(event) {
         }, time);
     };
     if (validOctaves.includes(event.key)){
+        document.getElementById(keyBindOctaves.get(octave.toString())).classList.remove("selected");
         let int = parseInt(event.key);
         octave = int;
+        document.getElementById(keyBindOctaves.get(octave.toString())).classList.add("selected");
     };
     if (validKeyBindsWaves.includes(event.key)) {
+        document.getElementById(wave).classList.remove("selected");
         wave = waveType[keyBindWaves.get(event.key)];
+        document.getElementById(wave).classList.add("selected");
     }
 })
